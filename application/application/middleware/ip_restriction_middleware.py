@@ -8,7 +8,8 @@ class IPRegionRestrictionMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        ip = request.META.get('REMOTE_ADDR')
+        # ip = request.META.get('REMOTE_ADDR')
+        ip = '77.87.40.249'
         country_code = self.get_country_code_from_ip(ip)
 
         if country_code not in self.ALLOWED_COUNTRIES:
