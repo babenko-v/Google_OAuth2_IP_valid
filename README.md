@@ -13,7 +13,6 @@ Next you need to copy the project from GitHub using the
 git clone
 ```
 Then in the root folder of the project you need to create a virtual environment and activate it.
-On Windows
 ```bash
 python -m venv venv
 source venv/bin/activate  # MacOS/Linux
