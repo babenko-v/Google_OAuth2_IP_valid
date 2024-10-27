@@ -1,5 +1,5 @@
 import requests
-from django.http import HttpResponseForbidden
+from django.http import JsonResponse
 
 class IPRegionRestrictionMiddleware:
     ALLOWED_COUNTRIES = ["UA", "PL"]
@@ -8,12 +8,12 @@ class IPRegionRestrictionMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        # ip = request.META.get('REMOTE_ADDR')
-        ip = '77.87.40.249'
+        ip = request.META.get('REMOTE_ADDR')
+
         country_code = self.get_country_code_from_ip(ip)
 
         if country_code not in self.ALLOWED_COUNTRIES:
-            return HttpResponseForbidden("Access is restricted to certain regions.")
+            return JsonResponse({'error': 'Access is restricted to certain regions.'}, status=403)
 
         response = self.get_response(request)
         return response

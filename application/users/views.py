@@ -31,6 +31,14 @@ class ContactsByID(APIView):
         serializer = ContactSerializer(contact)
         return Response(serializer.data)
 
+    def put(self, request, contact_id):
+        contact = get_object_or_404(Contact, id=contact_id)
+        serializer = ContactSerializer(contact, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     def delete(self, request, contact_id):
         contact = get_object_or_404(Contact, id=contact_id)
         contact.delete()
