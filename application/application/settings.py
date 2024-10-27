@@ -39,18 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'identification',
     'users',
 
     'rest_framework',
-    'rest_framework.authtoken',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
 ]
 
 SOCIALACCOUNT_PROVIDERS = {
@@ -74,6 +70,7 @@ MIDDLEWARE = [
     'application.middleware.ip_restriction_middleware.IPRegionRestrictionMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
+
 
 ROOT_URLCONF = 'application.urls'
 
